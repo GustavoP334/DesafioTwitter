@@ -6,13 +6,10 @@ export default function Register() {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm()
     
     const onSubmit = (data) => console.log(data)
-
-    console.log(watch("example"))
 
     return (
         <App>
@@ -28,7 +25,7 @@ export default function Register() {
 
                     <button type="submit" className="rounded bg-sky-500/100">Entrar</button>
 
-                    <p className="text-white flex items-center justify-center">Já possui uma conta? <Link className="text-sky-600" to="/register">Acesse agora!</Link></p>
+                    <p className="text-white flex items-center justify-center">Já possui uma conta? <Link className="text-sky-600" to="/login">Acesse agora!</Link></p>
                 </div>
             </form>
         </App>
