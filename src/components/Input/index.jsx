@@ -1,18 +1,48 @@
 import React from "react";
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import './index.css'
+const Input = ({ register, errors, name, type, placeholder, maxLength, minLength }) => {
+  const customValidation = (value) => {
+    if(type === 'email'){
+      // Verifica se o valor contém um '@'
+      return value.includes('@');
+    }
 
-const Input = React.forwardRef(({ type, placeholder, onChange, isValid, ...rest }, ref) => {
-    const inputClass = classNames('mt-1 px-3 py-2 bg-white border shadow-sm placeholder-slate-400 rounded focus:outline-none block w-full rounded-md sm:text-sm focus:ring-1', {
-        'border-2 border-rose-500': !isValid,
-        'focus:border-rose-500 focus:ring-red-500': !isValid,
-        'border-2 border-sky-500': isValid,
-        'focus:border-sky-500 focus:ring-sky-500': isValid
-    });
-    console.log(isValid);
+    return true;
+  };
 
-    return <input ref={ref} type={type} className={inputClass} placeholder={placeholder} onChange={onChange} {...rest} />;
-});
+  return (
+    <div className="mt-2.5">
+      <input
+        {...register(name, {
+          required: true,
+          maxLength: maxLength,
+          minLength: minLength,
+          validate: {
+            customValidation: customValidation,
+          },
+        })}
+        className={classNames(
+          "w-full p-2 rounded text-gray-500 placeholder-slate-400",
+          {
+            'border-2 border-rose-500 focus:border-red-500 focus:ring-red-500': errors[name],
+            'border-2 border-sky-500 focus:border-sky-500 focus:ring-sky-500': !errors[name]
+          }
+        )}
+        placeholder={placeholder || ""}
+        type={type || "text"}
+      />
+      {errors[name]?.type === "required" && (
+        <span className="text-xs text-red-500 pl-1">{`${name} é obrigatório(a)`}</span>
+      )}
+      {errors[name]?.type === "minLength" && (
+        <span className="text-xs text-red-500 pl-1">{`O(a) ${name} precisa ter pelo menos ${minLength} caracteres`}</span>
+      )}
+      {errors[name]?.type === "customValidation" && (
+        <span className="text-xs text-red-500 pl-1">O campo deve conter um "@"</span>
+      )}
+    </div>
+  );
+};
 
 export default Input;

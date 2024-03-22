@@ -1,43 +1,32 @@
-import { Link } from "react-router-dom";
-import { App } from "../layouts/App.jsx";
-import { useForm } from "react-hook-form"
-import { useState } from "react";
-import Input from "../components/Input/index.jsx";
+import { useForm } from "react-hook-form";
+import { App } from "../layouts/App";
+import SpanLink from "../components/SpanLink/index.jsx";
+import Form from "../components/Form/index.jsx";
+import CustomDiv from "../components/CustomDiv/index.jsx";
 
-export default function Login() {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm()
-    
-    const onSubmit = (data) => console.log(data)
-    
-    const [isValid, setIsValid] = useState(false);
+export const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    const handleEmailChange = (e) => {
-        if(e.target.value !== null && e.target.value !== undefined){
-            setIsValid(!e.target.value.includes('@'));
-        }
-    }
+  const handleFormSubmit = ({ email, senha }) => {
+    console.log("Entrando na conta...", email, senha);
+  };
 
-    return (
-        <App>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="grid grid-rows-6 grid-flow-col gap-4">
-                    <h1 className="flex items-center justify-center text-xl text-sky-600">Aluritter</h1>
-
-                    <Input type="email" onChange={handleEmailChange} isValid={isValid} placeholder="email@exemplo.com" {...register("example", { required: true })} />
-
-                    <Input type="password" placeholder="Senha" {...register("exampleRequired", { required: true })} />
-
-                    {errors.exampleRequired && <span className="flex items-center justify-center text-red-500">Preencha todos os campos</span>}
-
-                    <button type="submit" className="rounded bg-sky-500/100">Entrar</button>
-
-                    <p className="text-white flex items-center justify-center">Não possui uma conta? <Link className="text-sky-600" to="/register">Cadastre-se!</Link></p>
-                </div>
-            </form>
-        </App>
-    )
+  return (
+    <App>
+        <CustomDiv>
+            <Form
+                handleSubmit={handleSubmit}
+                handleFormSubmit={handleFormSubmit}
+                register={register}
+                errors={errors}
+                buttonText="Acesse a plataforma"
+            />
+            <SpanLink text="Não possui uma conta?" link="register" linkText="Crie uma agora!" />
+        </CustomDiv>
+    </App>
+  );
 };
