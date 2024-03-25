@@ -3,8 +3,8 @@ import React from "react";
 const Button = (props) => {
   return (
     <button
-        className="mt-5 p-2 rounded bg-emerald-500 hover:bg-emerald-600 text-slate-100"
-        type={props.type}
+      className={`p-2 rounded ${props.classColor}-500 hover:${props.classColor}-600 text-slate-100`}
+      type={props.type}
     >
     { props.text }
     </button>

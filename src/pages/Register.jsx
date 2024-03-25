@@ -16,7 +16,7 @@ export const Register = () => {
   };
 
   return (
-    <App>
+    <App className='bg-blue-950'>
         <CustomDiv>
             <p className="pb-5 text-gray-500">
                 Crie uma nova conta e comece aluritar agora mesmo =)

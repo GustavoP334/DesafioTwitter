@@ -16,7 +16,7 @@ export const Login = () => {
   };
 
   return (
-    <App>
+    <App className="bg-blue-950">
         <CustomDiv>
             <Form
                 handleSubmit={handleSubmit}
