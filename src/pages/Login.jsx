@@ -12,7 +12,7 @@ export const Login = () => {
   } = useForm();
 
   const handleFormSubmit = ({ email, senha }) => {
-    console.log("Entrando na conta...", email, senha);
+
   };
 
   return (
