@@ -12,7 +12,7 @@ const Header = (props) => {
                 <span className="font-sans text-sky-100 mr-1">{props.email}</span>
             </div>
             <div>
-                <Button type="submit" text="sair" classColor="bg-red" />
+                <Button type="submit" text="sair" classColor="bg-red-500" classColorHover="bg-red-600" onClick={props.handleLogout} />
             </div>
         </div>
     </div>

@@ -3,8 +3,9 @@ import React from "react";
 const Button = (props) => {
   return (
     <button
-      className={`p-2 rounded ${props.classColor}-500 hover:${props.classColor}-600 text-slate-100`}
+      className={`p-2 rounded ${props.classColor} hover:${props.classColorHover} text-slate-100`}
       type={props.type}
+      onClick={props.onClick}
     >
     { props.text }
     </button>

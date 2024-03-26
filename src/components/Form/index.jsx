@@ -26,7 +26,7 @@ const Form = ({ handleSubmit, handleFormSubmit, buttonText, register, errors }) 
         minLength={8}
       />
 
-      <Button type="submit" text={buttonText} classColor="bg-emerald" />
+      <Button type="submit" text={buttonText} classColor="bg-emerald-500" classColorHover="bg-emerald-600" />
     </form>
   );
 };
